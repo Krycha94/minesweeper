@@ -2,7 +2,7 @@ import styles from "./Panel.module.css";
 
 const Panel = () => {
 	return (
-		<section>
+		<section className={styles.panel}>
 			<select name="difficulty" id="difficulty">
 				<option value="easy">Easy</option>
 			</select>

@@ -3,7 +3,7 @@ import styles from "./Board.module.css";
 
 const Board = () => {
 	return (
-		<section>
+		<section className={styles.board}>
 			<Cell />
 			<Cell />
 			<Cell />

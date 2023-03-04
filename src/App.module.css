@@ -8,10 +8,12 @@ main {
 .container {
 	width: 90%;
 	max-width: 800px;
-	background-color: #444;
+	/* background-color: #444; */
 }
 
 .title {
 	text-transform: uppercase;
 	letter-spacing: 2px;
+	text-align: center;
+	padding: 1rem;
 }
