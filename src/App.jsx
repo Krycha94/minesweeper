@@ -8,7 +8,7 @@ function App() {
 			<div className={styles.container}>
 				<h1 className={styles.title}>💣 Minesweeper</h1>
 				<Panel />
-				<Board />
+				<Board rows={8} cols={8} mines={10}/>
 			</div>
 		</main>
 	);

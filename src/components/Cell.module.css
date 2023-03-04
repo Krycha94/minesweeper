@@ -11,3 +11,7 @@
 .cell:focus {
 	background-color: #f5f5f5;
 }
+
+.cell.revealed {
+	background-color: #f5f5f5;
+}

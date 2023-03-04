@@ -1,7 +1,12 @@
 import styles from "./Cell.module.css";
 
-const Cell = () => {
-	return <button className={styles.cell}>1</button>;
+const Cell = ({ isMine, isRevealed, isFlagged, adjacentBombs }) => {
+	return (
+		<button className={`${styles.cell} ${isRevealed ? styles.revealed : ""}`}>
+			{isRevealed && isMine ? "💣" : isFlagged && "🚩"}
+			{adjacentBombs}
+		</button>
+	);
 };
 
 export default Cell;
