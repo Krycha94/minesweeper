@@ -5,6 +5,7 @@ import styles from "./Board.module.css";
 
 const Board = ({ rows, cols, mines, setFlagsRemaining }) => {
 	const [cells, setCells] = useState([]);
+	const [gameOver, setGameOver] = useState({ type: false, message: "" });
 
 	const createCells = () => {
 		const newCells = [];
@@ -48,6 +49,14 @@ const Board = ({ rows, cols, mines, setFlagsRemaining }) => {
 		);
 	};
 
+	const revealAllCells = () => {
+		setCells((prev) =>
+			prev.map((c) => {
+				return { ...c, isRevealed: true };
+			})
+		);
+	};
+
 	const flagCell = (id) => {
 		setCells((prev) =>
 			prev.map((c) => {
@@ -60,11 +69,23 @@ const Board = ({ rows, cols, mines, setFlagsRemaining }) => {
 		);
 	};
 
+	const checkWin = () => {
+		const checkCells = cells.filter(
+			(c) => !c.isRevealed && !c.isFlagged && !c.isMine
+		);
+
+		if (checkCells.length === 0) {
+			setGameOver({ type: true, message: "You Won!" });
+			revealAllCells();
+		}
+	};
+
 	const handleLeftClick = (cell) => {
 		if (cell.isFlagged || cell.isRevealed) return;
 
 		if (cell.isMine) {
-			alert("game over");
+			revealAllCells();
+			setGameOver({ type: true, message: "You Lost!" });
 			return;
 		}
 
@@ -95,6 +116,8 @@ const Board = ({ rows, cols, mines, setFlagsRemaining }) => {
 				})
 			);
 		}
+
+		checkWin();
 	};
 
 	const handleRightClick = (event, cell) => {
@@ -117,6 +140,7 @@ const Board = ({ rows, cols, mines, setFlagsRemaining }) => {
 
 	return (
 		<section className={styles.board}>
+			{gameOver.type && <div>Modal</div>}
 			{cells.map((cell) => (
 				<Cell
 					key={cell.id}
