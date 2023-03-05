@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { getAdjacentTiles } from "../utils/helpers";
+import { getAdjacentCells } from "../utils/helpers";
 import Cell from "./Cell";
 import styles from "./Board.module.css";
 
-const Board = ({ rows, cols, mines }) => {
+const Board = ({ rows, cols, mines, setFlagsRemaining }) => {
 	const [cells, setCells] = useState([]);
-	// console.log(cells);
 
 	const createCells = () => {
 		const newCells = [];
@@ -49,11 +48,20 @@ const Board = ({ rows, cols, mines }) => {
 		);
 	};
 
+	const flagCell = (id) => {
+		setCells((prev) =>
+			prev.map((c) => {
+				if (c.id === id) {
+					return { ...c, isFlagged: !c.isFlagged };
+				} else {
+					return c;
+				}
+			})
+		);
+	};
+
 	const handleLeftClick = (cell) => {
-		if (cell.isFlagged || cell.isRevealed) {
-			console.log("flagged or revealed");
-			return;
-		}
+		if (cell.isFlagged || cell.isRevealed) return;
 
 		if (cell.isMine) {
 			alert("game over");
@@ -64,7 +72,7 @@ const Board = ({ rows, cols, mines }) => {
 		revealCell(cell.id);
 
 		//Check adjacent cells for mines number
-		const adjacentCells = getAdjacentTiles(cell, rows, cols, cells);
+		const adjacentCells = getAdjacentCells(cell, rows, cols, cells);
 		const adjacentMinesNumber = adjacentCells.filter((c) => c.isMine).length;
 
 		if (adjacentMinesNumber === 0) {
@@ -89,6 +97,20 @@ const Board = ({ rows, cols, mines }) => {
 		}
 	};
 
+	const handleRightClick = (event, cell) => {
+		event.preventDefault();
+
+		if (cell.isRevealed) return;
+
+		if (cell.isFlagged) {
+			setFlagsRemaining((prev) => prev + 1);
+		} else {
+			setFlagsRemaining((prev) => prev - 1);
+		}
+
+		flagCell(cell.id);
+	};
+
 	useEffect(() => {
 		createCells();
 	}, []);
@@ -100,7 +122,7 @@ const Board = ({ rows, cols, mines }) => {
 					key={cell.id}
 					{...cell}
 					onLeftClick={() => handleLeftClick(cell)}
-					onRightClick={() => handleRightClick(cell)}
+					onRightClick={(e) => handleRightClick(e, cell)}
 				/>
 			))}
 		</section>

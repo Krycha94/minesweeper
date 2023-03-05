@@ -1,27 +1,27 @@
-export const getAdjacentTiles = (tile, rows, cols, tiles) => {
-	const { row, col } = tile;
-	const adjacentTiles = [];
+export const getAdjacentCells = (cell, rows, cols, cells) => {
+	const { row, col } = cell;
+	const adjacentCells = [];
 
-	// Check tiles to the left and right
-	if (col > 0) adjacentTiles.push(getTile(row, col - 1, tiles));
-	if (col < cols - 1) adjacentTiles.push(getTile(row, col + 1, tiles));
+	// Check left and right cells
+	if (col > 0) adjacentCells.push(getTile(row, col - 1, cells));
+	if (col < cols - 1) adjacentCells.push(getTile(row, col + 1, cells));
 
-	// Check tiles above and below
-	if (row > 0) adjacentTiles.push(getTile(row - 1, col, tiles));
-	if (row < rows - 1) adjacentTiles.push(getTile(row + 1, col, tiles));
+	// Check up and down cells
+	if (row > 0) adjacentCells.push(getTile(row - 1, col, cells));
+	if (row < rows - 1) adjacentCells.push(getTile(row + 1, col, cells));
 
-	// Check diagonal tiles
-	if (row > 0 && col > 0) adjacentTiles.push(getTile(row - 1, col - 1, tiles));
+	// Check diagonal cells
+	if (row > 0 && col > 0) adjacentCells.push(getTile(row - 1, col - 1, cells));
 	if (row > 0 && col < cols - 1)
-		adjacentTiles.push(getTile(row - 1, col + 1, tiles));
+		adjacentCells.push(getTile(row - 1, col + 1, cells));
 	if (row < rows - 1 && col > 0)
-		adjacentTiles.push(getTile(row + 1, col - 1, tiles));
+		adjacentCells.push(getTile(row + 1, col - 1, cells));
 	if (row < rows - 1 && col < cols - 1)
-		adjacentTiles.push(getTile(row + 1, col + 1, tiles));
+		adjacentCells.push(getTile(row + 1, col + 1, cells));
 
-	return adjacentTiles;
+	return adjacentCells;
 };
 
-const getTile = (row, col, tiles) => {
-	return tiles.find((tile) => tile.row === row && tile.col === col);
+const getTile = (row, col, cells) => {
+	return cells.find((c) => c.row === row && c.col === col);
 };

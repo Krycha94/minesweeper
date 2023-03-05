@@ -7,8 +7,7 @@
 	font-size: 1rem;
 }
 
-.cell:hover,
-.cell:focus {
+.cell:hover {
 	background-color: #f5f5f5;
 }
 

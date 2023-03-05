@@ -8,16 +8,6 @@ const Cell = ({
 	onLeftClick,
 	onRightClick,
 }) => {
-	// const handleLeftClick = (e) => {
-	// 	e.preventDefault();
-	// 	onLeftClick()
-	// };
-
-	// const handleRightClick = (e) => {
-	// 	e.preventDefault();
-	// 	onRightClick()
-	// };
-
 	return (
 		<button
 			className={`${styles.cell} ${isRevealed ? styles.revealed : ""}`}
