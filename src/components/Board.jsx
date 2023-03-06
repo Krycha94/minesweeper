@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { getAdjacentCells } from "../utils/helpers";
 import Cell from "./Cell";
 import styles from "./Board.module.css";
+import Modal from "./Modal";
 
 const Board = ({ rows, cols, mines, setFlagsRemaining }) => {
 	const [cells, setCells] = useState([]);
-	const [gameOver, setGameOver] = useState({ type: false, message: "" });
+	const [gameOver, setGameOver] = useState({ type: true, message: "" });
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const createCells = () => {
 		const newCells = [];
@@ -76,8 +78,14 @@ const Board = ({ rows, cols, mines, setFlagsRemaining }) => {
 
 		if (checkCells.length === 0) {
 			setGameOver({ type: true, message: "You Won!" });
+			setIsModalOpen(true);
 			revealAllCells();
 		}
+	};
+
+	const handleCloseModal = () => {
+		//reset game
+		setIsModalOpen(false);
 	};
 
 	const handleLeftClick = (cell) => {
@@ -86,6 +94,7 @@ const Board = ({ rows, cols, mines, setFlagsRemaining }) => {
 		if (cell.isMine) {
 			revealAllCells();
 			setGameOver({ type: true, message: "You Lost!" });
+			setIsModalOpen(true);
 			return;
 		}
 
@@ -140,7 +149,9 @@ const Board = ({ rows, cols, mines, setFlagsRemaining }) => {
 
 	return (
 		<section className={styles.board}>
-			{gameOver.type && <div>Modal</div>}
+			{isModalOpen && gameOver.type && (
+				<Modal message={gameOver.message} onCloseModal={handleCloseModal} />
+			)}
 			{cells.map((cell) => (
 				<Cell
 					key={cell.id}
