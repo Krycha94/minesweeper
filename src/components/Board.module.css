@@ -1,8 +1,23 @@
 .board {
 	display: grid;
-	grid-template-columns: repeat(8, 40px);
-	grid-template-rows: repeat(8, 40px);
-	gap: 2px;
 	justify-content: center;
 	user-select: none;
+}
+
+.boardSix {
+	grid-template-columns: repeat(6, 55px);
+	grid-template-rows: repeat(6, 55px);
+	gap: 2px;
+}
+
+.boardEight {
+	grid-template-columns: repeat(8, 42px);
+	grid-template-rows: repeat(8, 42px);
+	gap: 2px;
+}
+
+.boardTen {
+	grid-template-columns: repeat(10, 35px);
+	grid-template-rows: repeat(10, 35px);
+	gap: 2px;
 }

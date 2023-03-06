@@ -4,7 +4,7 @@ import Cell from "./Cell";
 import styles from "./Board.module.css";
 import Modal from "./Modal";
 
-const Board = ({ rows, cols, mines, setFlagsRemaining }) => {
+const Board = ({ rows, cols, mines, setFlagsRemaining, onResetTimer }) => {
 	const [cells, setCells] = useState([]);
 	const [gameOver, setGameOver] = useState({ type: true, message: "" });
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -88,6 +88,7 @@ const Board = ({ rows, cols, mines, setFlagsRemaining }) => {
 		setGameOver({ type: false, message: "" });
 		setFlagsRemaining(mines);
 		createCells();
+		onResetTimer();
 	};
 
 	const handleCloseModal = () => {
@@ -152,10 +153,19 @@ const Board = ({ rows, cols, mines, setFlagsRemaining }) => {
 
 	useEffect(() => {
 		createCells();
-	}, []);
+		setFlagsRemaining(mines);
+	}, [rows, cols, mines]);
 
 	return (
-		<section className={styles.board}>
+		<section
+			className={`${styles.board} ${
+				rows === 6
+					? styles.boardSix
+					: rows === 8
+					? styles.boardEight
+					: styles.boardTen
+			}`}
+		>
 			{isModalOpen && gameOver.type && (
 				<Modal message={gameOver.message} onCloseModal={handleCloseModal} />
 			)}

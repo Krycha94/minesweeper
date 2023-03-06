@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { formatTime } from "../utils/helpers";
 import styles from "./Panel.module.css";
 
-const Panel = ({ flagsRemaining }) => {
+const Panel = ({ flagsRemaining, setDifficulty, difficulty, resetTime }) => {
 	const timeRef = useRef(null);
 
 	useEffect(() => {
@@ -12,12 +12,18 @@ const Panel = ({ flagsRemaining }) => {
 			timeRef.current.textContent = formatTime(seconds);
 		}, 1000);
 		return () => clearInterval(interval);
-	}, []);
+	}, [difficulty, resetTime]);
 
 	return (
 		<section className={styles.panel}>
-			<select name="difficulty" id="difficulty">
+			<select
+				name="difficulty"
+				id="difficulty"
+				onChange={(e) => setDifficulty(e.target.value)}
+			>
 				<option value="easy">Easy</option>
+				<option value="medium">Medium</option>
+				<option value="hard">Hard</option>
 			</select>
 			<div className={styles.info}>
 				<p>🚩 {flagsRemaining}</p>
