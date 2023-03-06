@@ -83,8 +83,15 @@ const Board = ({ rows, cols, mines, setFlagsRemaining }) => {
 		}
 	};
 
+	const resetGame = () => {
+		setCells([]);
+		setGameOver({ type: false, message: "" });
+		setFlagsRemaining(mines);
+		createCells();
+	};
+
 	const handleCloseModal = () => {
-		//reset game
+		resetGame();
 		setIsModalOpen(false);
 	};
 

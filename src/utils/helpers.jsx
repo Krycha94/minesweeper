@@ -22,6 +22,8 @@ export const getAdjacentCells = (cell, rows, cols, cells) => {
 	return adjacentCells;
 };
 
-const getTile = (row, col, cells) => {
-	return cells.find((c) => c.row === row && c.col === col);
-};
+const getTile = (row, col, cells) =>
+	cells.find((c) => c.row === row && c.col === col);
+
+export const formatTime = (time) =>
+	new Date(time * 1000).toISOString().substring(14, 19);
