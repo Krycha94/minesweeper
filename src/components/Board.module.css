@@ -17,7 +17,7 @@
 }
 
 .boardTen {
-	grid-template-columns: repeat(10, 35px);
-	grid-template-rows: repeat(10, 35px);
+	grid-template-columns: repeat(10, 33px);
+	grid-template-rows: repeat(10, 33px);
 	gap: 2px;
 }

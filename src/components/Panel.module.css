@@ -1,5 +1,5 @@
 .panel {
-	background-color: #2b2b2b;
+	background-color: hsl(0, 0%, 17%);
 	padding: 1rem;
 	display: flex;
 	justify-content: space-between;
@@ -8,7 +8,7 @@
 	border-radius: 8px;
 }
 
-select {
+.panel select {
 	background-color: #3c3f41;
 	border: none;
 	font-size: 1rem;

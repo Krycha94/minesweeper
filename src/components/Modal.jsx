@@ -3,10 +3,16 @@ import styles from "./Modal.module.css";
 const Modal = ({ message, onCloseModal }) => {
 	return (
 		<>
-			<div className={styles.backdrop} onClick={onCloseModal}></div>
+			<div className={styles.backdrop}></div>
 			<div className={styles.modal}>
-				<h2>{message || "Play Again"}</h2>
-				<button onClick={onCloseModal}>Play Again</button>
+				<header className={styles.modalHeader}>
+					<h2>{message || "Play Again"}</h2>
+				</header>
+				<footer className={styles.modalFooter}>
+					<button onClick={onCloseModal} className={styles.modalBtn}>
+						Play Again
+					</button>
+				</footer>
 			</div>
 		</>
 	);

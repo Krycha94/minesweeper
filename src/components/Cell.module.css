@@ -1,16 +1,17 @@
 .cell {
-	background-color: #b0b0b0;
+	background-color: hsl(0, 0%, 69%);
 	border: none;
 	cursor: pointer;
 	border-radius: 4px;
 	font-weight: 600;
-	font-size: 1rem;
+	font-size: 1.3rem;
+	transition: 0.5s;
 }
 
 .cell:hover {
-	background-color: #f5f5f5;
+	background-color: hsl(0, 0%, 96%);
 }
 
 .cell.revealed {
-	background-color: #f5f5f5;
+	background-color: hsl(0, 0%, 96%);
 }

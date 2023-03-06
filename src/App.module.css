@@ -8,12 +8,23 @@ main {
 .container {
 	width: 90%;
 	max-width: 800px;
-	/* background-color: #444; */
+	background-color: hsla(0, 0%, 0%, 0.4);
+	padding: 2rem 1rem;
+	border-radius: 1rem;
 }
 
 .title {
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	text-align: center;
-	padding: 1rem;
+	padding-bottom: 1rem;
+}
+
+@media screen and (min-width: 756px) {
+	.container {
+		padding: 4rem;
+	}
+	.title {
+		padding-bottom: 2rem;
+	}
 }
