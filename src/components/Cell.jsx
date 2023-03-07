@@ -21,6 +21,7 @@ const Cell = ({
 
 	return (
 		<button
+			aria-label="cell"
 			className={`${styles.cell} ${isRevealed ? styles.revealed : ""}`}
 			onClick={onLeftClick}
 			onContextMenu={onRightClick}
