@@ -12,8 +12,8 @@ Modern looking Minesweeper game, I created in React with basic CSS. The game has
 
 In this project I used:
 
--   [Vite](https://vitejs.dev/) is a build tool that aims to provide a faster and leaner development experience for modern web projects (version: 4.1.0)
--   [React](https://reactjs.org/) A JavaScript library for building user interfaces(version: 18.2.0)
+-   [Vite](https://vitejs.dev/) Build tool that aims to provide a faster and leaner development experience for modern web projects (version: 4.1.0)
+-   [React](https://reactjs.org/) JavaScript library for building user interfaces (version: 18.2.0)
 
 ## Screenshots
 
